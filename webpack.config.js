@@ -11,6 +11,11 @@ module.exports = {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist/js')
     },
+    devServer: {
+        contentBase: path.join(__dirname, 'static'),
+        hot: true,
+        port: 8080
+    },
     mode: 'development',
     module: {
         rules: [
