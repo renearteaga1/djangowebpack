@@ -4,4 +4,4 @@ if (module.hot) {
     module.hot.accept();
 }
 
-alert('Helo');
+alert('Hello');

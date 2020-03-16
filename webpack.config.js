@@ -1,4 +1,5 @@
-const path = require('path')
+const path = require('path');
+const bundlerTracker = require('webpack-bundle-tracker');
 const postCSSPlugins = [
     require('postcss-simple-vars'),
     require('postcss-nested'),
@@ -8,11 +9,11 @@ const postCSSPlugins = [
 module.exports = {
     entry: './static/js/script.js',
     output: {
-        filename: 'bundle.js',
+        filename: 'bundle-[hash].js',
         path: path.resolve(__dirname, 'dist/js')
     },
     devServer: {
-        contentBase: path.join(__dirname, 'static'),
+        contentBase: path.join(__dirname, 'dist'),
         hot: true,
         port: 8080
     },
@@ -24,5 +25,8 @@ module.exports = {
                 use: ['style-loader', 'css-loader', {loader: 'postcss-loader', options: {plugins: postCSSPlugins}}]
             }
         ]
-    }
+    },
+    plugins: [
+        new bundlerTracker({filename: './webpack-stats.json'}),
+    ],
 }
